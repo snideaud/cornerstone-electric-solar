@@ -41,6 +41,10 @@
       overflow-x: hidden;
     }
 
+    main {
+      overflow: hidden;
+    }
+
     a {
       text-decoration: none;
       color: inherit;
@@ -85,24 +89,10 @@
     }
 
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
       font-weight: 900;
       letter-spacing: -0.03em;
       color: var(--dark);
-    }
-
-    .logo-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background:
-        linear-gradient(135deg, var(--green), var(--green-bright));
-      display: grid;
-      place-items: center;
-      color: var(--white);
-      box-shadow: 0 10px 24px rgba(95, 143, 67, 0.28);
+      line-height: 1.1;
     }
 
     .nav-links {
@@ -699,14 +689,87 @@
 
     @media (max-width: 980px) {
       section {
-        padding: 72px 18px;
+        padding: 64px 18px;
+      }
+
+      .container {
+        width: 100%;
+      }
+
+      .hero-shell {
+        padding: 18px 14px 0;
       }
 
       .hero {
         grid-template-columns: 1fr;
         min-height: auto;
-        padding: 38px 24px;
-        border-radius: 30px;
+        padding: 34px 20px;
+        border-radius: 28px;
+        gap: 32px;
+      }
+
+      .hero::after {
+        inset: 12px;
+        border-radius: 22px;
+      }
+
+      .hero-content {
+        padding-top: 10px;
+      }
+
+      h1 {
+        font-size: clamp(3.1rem, 17vw, 4.8rem);
+        line-height: 0.92;
+        letter-spacing: -0.07em;
+      }
+
+      h2 {
+        font-size: clamp(2.15rem, 11vw, 3.2rem);
+        line-height: 0.98;
+      }
+
+      p,
+      .hero p {
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+        min-height: 52px;
+      }
+
+      .hero-media {
+        gap: 14px;
+      }
+
+      .hero-card {
+        animation: none;
+        padding: 10px;
+        border-radius: 24px;
+      }
+
+      .hero-image,
+      .feature-image {
+        min-height: auto;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        border-radius: 18px;
+      }
+
+      .mini-proof {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .proof-pill {
+        padding: 15px 16px;
+        border-radius: 18px;
       }
 
       .section-header,
@@ -715,74 +778,104 @@
         grid-template-columns: 1fr;
       }
 
+      .section-header {
+        gap: 14px;
+        margin-bottom: 28px;
+      }
+
       .cards {
         grid-template-columns: 1fr;
+        gap: 16px;
       }
 
-      .hero-image,
-      .feature-image {
-        min-height: 300px;
-        aspect-ratio: 4 / 3;
+      .card {
+        min-height: auto;
+        padding: 24px;
+        border-radius: 22px;
       }
 
-      .hero-card {
-        animation: none;
+      .card:hover,
+      .site-image:hover {
+        transform: none;
       }
 
-      .mini-proof {
-        grid-template-columns: 1fr;
+      .feature-frame {
+        padding: 10px;
+        border-radius: 26px;
+      }
+
+      .feature-frame::before {
+        display: none;
+      }
+
+      .feature {
+        padding: 16px 16px 16px 50px;
+        border-radius: 18px;
       }
 
       .gallery-section {
-        margin: 0 18px 72px;
-        border-radius: 30px;
-        padding: 64px 18px;
+        margin: 0 14px 64px;
+        padding: 56px 16px;
+        border-radius: 28px;
       }
 
       .gallery-grid {
         grid-template-columns: 1fr;
-        grid-auto-rows: 260px;
+        grid-auto-rows: auto;
+        gap: 14px;
       }
 
+      .gallery-grid .site-image,
       .gallery-grid .large,
       .gallery-grid img:nth-child(5) {
         grid-row: auto;
         grid-column: auto;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .hero-actions {
-        flex-direction: column;
+        height: auto;
+        aspect-ratio: 4 / 3;
       }
 
       .cta {
-        padding: 36px 24px;
+        padding: 34px 22px;
+        border-radius: 28px;
+      }
+
+      .cta h2 {
+        font-size: clamp(2rem, 10vw, 2.8rem);
       }
     }
 
     @media (max-width: 760px) {
       .nav {
-        padding: 14px 18px;
+        padding: 12px 16px;
       }
 
       .logo {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         max-width: 230px;
+        line-height: 1.1;
+      }
+
+      .menu-btn {
+        display: block;
+        padding: 9px 13px;
+        font-size: 0.85rem;
+      }
+
+      .nav-cta {
+        display: none;
       }
 
       .nav-links {
         position: absolute;
-        left: 18px;
-        right: 18px;
-        top: 64px;
+        left: 14px;
+        right: 14px;
+        top: 58px;
         background: var(--white);
         border: 1px solid var(--line);
-        border-radius: 20px;
-        padding: 18px;
+        border-radius: 18px;
+        padding: 14px;
         flex-direction: column;
+        gap: 4px;
         display: none;
         box-shadow: var(--shadow);
       }
@@ -792,35 +885,58 @@
       }
 
       .nav-links a {
-        padding: 10px 0;
+        padding: 12px 8px;
+        color: var(--dark);
+        font-weight: 800;
       }
 
-      .menu-btn {
-        display: block;
-      }
-
-      .nav-cta {
+      .nav-links a::after {
         display: none;
       }
 
-      h1 {
-        font-size: clamp(3rem, 15vw, 4.2rem);
-      }
-
-      h2 {
-        font-size: clamp(2.1rem, 10vw, 3rem);
-      }
-
       .hero-shell {
-        padding-top: 18px;
+        padding: 14px 10px 0;
       }
 
       .hero {
-        padding: 32px 20px;
+        padding: 30px 18px;
       }
 
-      .proof-pill {
-        padding: 16px;
+      .eyebrow,
+      .section-kicker {
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+      }
+
+      .section-kicker::before {
+        width: 24px;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 18vw, 4rem);
+      }
+
+      h2 {
+        font-size: clamp(2rem, 11vw, 2.8rem);
+      }
+
+      .hero p {
+        font-size: 0.98rem;
+      }
+
+      .site-image {
+        border-radius: 18px;
+      }
+
+      .card-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 15px;
+      }
+
+      .gallery-section {
+        margin-left: 10px;
+        margin-right: 10px;
       }
 
       .footer-inner {
@@ -828,9 +944,53 @@
         font-size: 0.9rem;
       }
 
+      .lightbox {
+        padding: 14px;
+      }
+
+      .lightbox img {
+        max-width: 94vw;
+        max-height: 82vh;
+        border-radius: 16px;
+      }
+
       .lightbox-close {
-        top: 18px;
-        right: 18px;
+        top: 16px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.7rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      section {
+        padding: 54px 14px;
+      }
+
+      .hero {
+        padding: 28px 16px;
+        border-radius: 24px;
+      }
+
+      h1 {
+        font-size: 3.15rem;
+      }
+
+      h2 {
+        font-size: 2.25rem;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .cta {
+        padding: 30px 18px;
+      }
+
+      .proof-pill strong {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -840,10 +1000,7 @@
 
   <header>
     <nav class="nav">
-      <a href="#home" class="logo">
-        <span class="logo-mark">⚡</span>
-        <span>Cornerstone Electric & Solar</span>
-      </a>
+      <a href="#home" class="logo">Cornerstone Electric & Solar</a>
 
       <div class="nav-links" id="navLinks">
         <a href="#home">Home</a>
@@ -1047,8 +1204,8 @@
           />
 
           <img
-            src="assets/images/image_2.png"
-            alt="Generator backup power system"
+            src="assets/images/image_5.png"
+            alt="Commercial rooftop solar installation"
             class="site-image"
           />
         </div>
