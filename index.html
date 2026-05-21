@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f8f5ee" />
+  <title>Cornerstone Electric & Solar</title>
+
+  <style>
+    :root {
+      --cream: #f8f5ee;
+      --white: #ffffff;
+      --dark: #132118;
+      --green: #4f7d3f;
+      --green-dark: #263f22;
+      --light-green: #dcead3;
+      --gray: #6f766f;
+      --soft-border: #e5dfd3;
+      --shadow: 0 24px 70px rgba(19, 33, 24, 0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248, 245, 238, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--soft-border);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--gray);
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: -6px;
+      background: var(--green);
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-cta,
+    .btn {
+      border: none;
+      cursor: pointer;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.25s ease;
+    }
+
+    .nav-cta,
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .nav-cta:hover,
+    .btn-primary:hover {
+      background: var(--green-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(79, 125, 63, 0.25);
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      border: 1px solid var(--soft-border);
+      color: var(--dark);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .menu-btn {
+      display: none;
+      border: 0;
+      background: var(--green);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 90px 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: grid;
+      align-items: center;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 7vw, 5.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--gray);
+      max-width: 620px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .hero-card {
+      background: var(--white);
+      padding: 16px;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-14px);
+      }
+    }
+
+    .site-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 2px solid var(--soft-border);
+      border-radius: 22px;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .site-image:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow);
+      border-color: var(--green);
+    }
+
+    .hero-image {
+      min-height: 520px;
+      aspect-ratio: 4 / 5;
+      object-position: center;
+    }
+
+    .feature-image {
+      min-height: 520px;
+      aspect-ratio: 4 / 5;
+      object-position: center;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      background: var(--light-green);
+      padding: 20px;
+      border-radius: 18px;
+      transition: 0.25s ease;
+    }
+
+    .stat:hover {
+      transform: translateY(-5px);
+      background: #cfe3c2;
+    }
+
+    .stat strong {
+      font-size: 2rem;
+      color: var(--green);
+      display: block;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 36px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 28px;
+      border-radius: 24px;
+      border: 1px solid var(--soft-border);
+      transition: 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(79, 125, 63, 0.12), transparent);
+      opacity: 0;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: var(--light-green);
+      display: grid;
+      place-items: center;
+      color: var(--green);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .card-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.35s ease;
+      color: var(--gray);
+      font-size: 0.95rem;
+      margin-top: 10px;
+    }
+
+    .card.open .card-details {
+      max-height: 180px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .feature-list {
+      margin-top: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .feature {
+      background: var(--white);
+      border: 1px solid var(--soft-border);
+      border-radius: 18px;
+      padding: 18px;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .feature:hover {
+      padding-left: 28px;
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      grid-auto-rows: 260px;
+      gap: 18px;
+    }
+
+    .gallery-grid .site-image {
+      height: 100%;
+      object-fit: cover;
+      min-height: unset;
+    }
+
+    .gallery-grid .large {
+      grid-row: span 2;
+      min-height: unset;
+    }
+
+    .cta {
+      background: var(--dark);
+      color: var(--white);
+      border-radius: 34px;
+      padding: 64px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      right: -100px;
+      top: -100px;
+      background: rgba(79, 125, 63, 0.35);
+      border-radius: 50%;
+      filter: blur(10px);
+    }
+
+    .cta p {
+      color: #cbd5cb;
+    }
+
+    footer {
+      padding: 36px 24px;
+      border-top: 1px solid var(--soft-border);
+      color: var(--gray);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.25s ease;
+      z-index: 999;
+      padding: 24px;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      border-radius: 22px;
+      object-fit: contain;
+      transform: scale(0.92);
+      transition: 0.25s ease;
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .lightbox.open img {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      width: 52px;
+      height: 52px;
+      border: none;
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+      border-radius: 50%;
+      font-size: 2rem;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 900px) {
+      body {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 64px 18px;
+      }
+
+      .nav {
+        padding: 14px 18px;
+      }
+
+      .logo {
+        font-size: 0.95rem;
+        max-width: 210px;
+        line-height: 1.1;
+      }
+
+      .hero,
+      .split,
+      .cta {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 52px;
+        gap: 34px;
+      }
+
+      h1 {
+        font-size: clamp(2.65rem, 15vw, 4.25rem);
+      }
+
+      h2 {
+        font-size: clamp(2rem, 10vw, 3rem);
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .cards,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 260px;
+      }
+
+      .gallery-grid .large {
+        grid-row: auto;
+      }
+
+      .stats {
+        gap: 12px;
+      }
+
+      .stat {
+        padding: 18px;
+      }
+
+      .section-header {
+        display: block;
+        margin-bottom: 28px;
+      }
+
+      .section-header p {
+        margin-top: 12px;
+      }
+
+      .hero-image,
+      .feature-image {
+        min-height: 260px;
+        aspect-ratio: 4 / 3;
+      }
+
+      .hero-card {
+        animation: none;
+      }
+
+      .nav-links {
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        top: 64px;
+        background: var(--white);
+        border: 1px solid var(--soft-border);
+        border-radius: 20px;
+        padding: 18px;
+        flex-direction: column;
+        display: none;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 10px 0;
+        font-size: 1rem;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .cta {
+        padding: 34px 24px;
+        border-radius: 26px;
+      }
+
+      .cta::after {
+        width: 180px;
+        height: 180px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        font-size: 0.9rem;
+      }
+
+      .lightbox-close {
+        top: 18px;
+        right: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      section {
+        padding: 56px 16px;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      .eyebrow {
+        font-size: 0.72rem;
+      }
+
+      .card {
+        padding: 22px;
+      }
+
+      .feature {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav">
+      <a href="#home" class="logo">Cornerstone Electric & Solar</a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <a href="#contact" class="nav-cta">Get a Quote</a>
+      <button class="menu-btn" id="menuBtn">Menu</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="home" class="container hero">
+      <div class="reveal">
+        <div class="eyebrow">Master Electrician • Licensed & Insured • Missouri & Arkansas</div>
+        <h1>Solar, electrical, and backup power solutions.</h1>
+        <p>
+          Cornerstone Electric & Solar provides licensed residential and commercial electrical service,
+          solar system installation, battery storage, generator backup power, EV chargers, and solar
+          panel removal and reinstallation for roof replacement projects.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Request a Free Estimate</a>
+          <a href="#services" class="btn btn-secondary">Explore Services</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>MO</strong>
+            Licensed service
+          </div>
+          <div class="stat">
+            <strong>AR</strong>
+            Licensed service
+          </div>
+          <div class="stat">
+            <strong>100%</strong>
+            Insured work
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <img
+          src="assets/images/image_6.png"
+          alt="Large solar field installation"
+          class="site-image hero-image"
+        />
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <div class="eyebrow">Services</div>
+            <h2>Full-service electrical, solar, and backup power support.</h2>
+          </div>
+          <p>
+            Click each service card to expand details.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card-icon">⚡</div>
+            <h3>Electrical Service & Repairs</h3>
+            <p>Residential and commercial electrical service from a licensed master electrician.</p>
+            <div class="card-details">
+              Service repairs, electrical troubleshooting, system upgrades, and general electrical work for homes and businesses.
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">☀</div>
+            <h3>Full Solar Systems</h3>
+            <p>Complete solar system solutions for residential and commercial properties.</p>
+            <div class="card-details">
+              Solar planning, installation, and EPC contractor support for complete solar energy systems.
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">🔋</div>
+            <h3>Battery Storage & Backup Power</h3>
+            <p>Backup power systems designed to keep essential power available when it matters.</p>
+            <div class="card-details">
+              Battery storage, generator backup power, and practical energy backup solutions for homes and businesses.
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">🔌</div>
+            <h3>EV Chargers</h3>
+            <p>Electric vehicle charger installation for residential and commercial needs.</p>
+            <div class="card-details">
+              EV charging setup for homeowners, businesses, garages, shops, and commercial locations.
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">🏠</div>
+            <h3>Solar Panel Removal & Reinstall</h3>
+            <p>Solar panel removal and reinstallation for roof replacement projects.</p>
+            <div class="card-details">
+              Panels can be safely removed before a new roof is installed and reinstalled once roofing work is complete.
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">🛠</div>
+            <h3>Commercial & Residential Projects</h3>
+            <p>Electrical and energy work for both home and business properties.</p>
+            <div class="card-details">
+              Support for residential electrical service, commercial electrical needs, solar projects, generators, and energy upgrades.
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us">
+      <div class="container split">
+        <div class="reveal">
+          <img
+            src="assets/images/image_3.png"
+            alt="Battery storage and backup power system"
+            class="site-image feature-image"
+          />
+        </div>
+
+        <div class="reveal">
+          <div class="eyebrow">Why Choose Us</div>
+          <h2>Licensed, insured, and built for dependable power.</h2>
+          <p>
+            Cornerstone Electric & Solar brings master electrician experience to solar, electrical,
+            generator, battery backup, and EV charging projects across Missouri and Arkansas.
+          </p>
+
+          <div class="feature-list">
+            <div class="feature">Master electrician serving Missouri and Arkansas</div>
+            <div class="feature">Licensed and insured electrical and solar work</div>
+            <div class="feature">Residential and commercial service support</div>
+            <div class="feature">Solar, generators, battery storage, and EV charger solutions</div>
+            <div class="feature">Solar panel removal and reinstallation for roof projects</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <div class="eyebrow">Project Gallery</div>
+            <h2>Solar, electrical, and backup power project highlights.</h2>
+          </div>
+          <p>
+            Click a project photo to enlarge it.
+          </p>
+        </div>
+
+        <div class="gallery-grid reveal">
+          <img
+            src="assets/images/image_4.png"
+            alt="Ground-mounted solar panel system"
+            class="site-image large"
+          />
+
+          <img
+            src="assets/images/image_8.png"
+            alt="EV charger plugged into electric vehicle"
+            class="site-image"
+          />
+
+          <img
+            src="assets/images/image_3.png"
+            alt="Indoor battery backup storage system"
+            class="site-image"
+          />
+
+          <img
+            src="assets/images/image_7.png"
+            alt="Electrical conduit installation"
+            class="site-image"
+          />
+
+          <img
+            src="assets/images/image_5.png"
+            alt="Commercial rooftop solar installation"
+            class="site-image"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container reveal">
+        <div class="cta">
+          <div>
+            <div class="eyebrow">Get Started</div>
+            <h2>Need solar, electrical service, backup power, or EV charging?</h2>
+            <p>
+              Contact Cornerstone Electric & Solar for licensed and insured service in Missouri and Arkansas.
+            </p>
+          </div>
+
+          <a href="tel:0000000000" class="btn btn-primary">Call Now</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© 2026 Cornerstone Electric & Solar. All rights reserved.</div>
+      <div>Phone: 000-000-0000 • Email: info@example.com</div>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="closeLightbox">×</button>
+    <img id="lightboxImage" src="" alt="" />
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(element => revealObserver.observe(element));
+
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", () => {
+        card.classList.toggle("open");
+      });
+    });
+
+    const sections = document.querySelectorAll("section");
+    const navItems = document.querySelectorAll(".nav-links a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+
+        if (scrollY >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navItems.forEach(link => {
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const closeLightbox = document.getElementById("closeLightbox");
+
+    document.querySelectorAll(".site-image").forEach(image => {
+      image.addEventListener("click", () => {
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightbox.classList.add("open");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    function closeViewer() {
+      lightbox.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    closeLightbox.addEventListener("click", closeViewer);
+
+    lightbox.addEventListener("click", event => {
+      if (event.target === lightbox) {
+        closeViewer();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeViewer();
+      }
+    });
+  </script>
+
+</body>
+</html>
