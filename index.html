@@ -3,20 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f8f5ee" />
+  <meta name="theme-color" content="#101910" />
   <title>Cornerstone Electric & Solar</title>
 
   <style>
     :root {
-      --cream: #f8f5ee;
+      --cream: #f7f1e6;
+      --cream-2: #efe6d6;
       --white: #ffffff;
-      --dark: #132118;
-      --green: #4f7d3f;
-      --green-dark: #263f22;
-      --light-green: #dcead3;
-      --gray: #6f766f;
-      --soft-border: #e5dfd3;
-      --shadow: 0 24px 70px rgba(19, 33, 24, 0.12);
+      --dark: #101910;
+      --dark-2: #172417;
+      --green: #5f8f43;
+      --green-bright: #8fbc5f;
+      --green-soft: #e1ecd6;
+      --gold: #d8a84d;
+      --gray: #687166;
+      --line: rgba(16, 25, 16, 0.12);
+      --shadow: 0 28px 80px rgba(16, 25, 16, 0.18);
+      --radius: 28px;
     }
 
     * {
@@ -47,53 +51,84 @@
       max-width: 100%;
     }
 
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(143, 188, 95, 0.16), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(216, 168, 77, 0.12), transparent 26%),
+        linear-gradient(rgba(16, 25, 16, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 25, 16, 0.025) 1px, transparent 1px);
+      background-size: auto, auto, 48px 48px, 48px 48px;
+      z-index: -1;
+    }
+
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(248, 245, 238, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--soft-border);
+      background: rgba(247, 241, 230, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
     }
 
     .nav {
-      max-width: 1200px;
+      max-width: 1240px;
       margin: 0 auto;
-      padding: 18px 24px;
+      padding: 16px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 18px;
     }
 
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-weight: 900;
-      color: var(--green);
+      letter-spacing: -0.03em;
+      color: var(--dark);
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, var(--green), var(--green-bright));
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(95, 143, 67, 0.28);
     }
 
     .nav-links {
       display: flex;
       gap: 24px;
-      font-size: 0.95rem;
+      font-size: 0.94rem;
+      color: var(--gray);
     }
 
     .nav-links a {
       position: relative;
-      color: var(--gray);
     }
 
-    .nav-links a.active,
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-links a.active {
       color: var(--green);
     }
 
     .nav-links a::after {
       content: "";
       position: absolute;
+      left: 0;
+      bottom: -7px;
       width: 0;
       height: 2px;
-      left: 0;
-      bottom: -6px;
-      background: var(--green);
+      background: var(--gold);
       transition: 0.25s ease;
     }
 
@@ -108,7 +143,7 @@
       cursor: pointer;
       padding: 14px 22px;
       border-radius: 999px;
-      font-weight: 800;
+      font-weight: 900;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -117,20 +152,20 @@
 
     .nav-cta,
     .btn-primary {
-      background: var(--green);
+      background: var(--dark);
       color: var(--white);
     }
 
     .nav-cta:hover,
     .btn-primary:hover {
-      background: var(--green-dark);
       transform: translateY(-3px);
-      box-shadow: 0 14px 30px rgba(79, 125, 63, 0.25);
+      background: var(--green);
+      box-shadow: 0 18px 34px rgba(95, 143, 67, 0.28);
     }
 
     .btn-secondary {
-      background: var(--white);
-      border: 1px solid var(--soft-border);
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--line);
       color: var(--dark);
     }
 
@@ -142,61 +177,107 @@
     .menu-btn {
       display: none;
       border: 0;
-      background: var(--green);
+      background: var(--dark);
       color: white;
       padding: 10px 14px;
       border-radius: 999px;
-      font-weight: 800;
+      font-weight: 900;
       cursor: pointer;
     }
 
     section {
-      padding: 90px 24px;
+      padding: 96px 24px;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1240px;
       margin: 0 auto;
     }
 
+    .hero-shell {
+      padding-top: 32px;
+    }
+
     .hero {
-      min-height: 90vh;
+      min-height: calc(100vh - 90px);
       display: grid;
       align-items: center;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 48px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 54px;
+      background:
+        linear-gradient(135deg, rgba(16, 25, 16, 0.96), rgba(23, 36, 23, 0.92)),
+        radial-gradient(circle at 85% 15%, rgba(216, 168, 77, 0.3), transparent 30%);
+      border-radius: 42px;
+      padding: 56px;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 560px;
+      height: 560px;
+      right: -260px;
+      bottom: -260px;
+      border-radius: 50%;
+      background: rgba(143, 188, 95, 0.28);
+      filter: blur(6px);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 32px;
+      pointer-events: none;
+    }
+
+    .hero-content,
+    .hero-media {
+      position: relative;
+      z-index: 2;
     }
 
     .eyebrow {
-      color: var(--green);
+      color: var(--green-bright);
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      font-size: 0.78rem;
       margin-bottom: 14px;
     }
 
     h1 {
-      font-size: clamp(2.7rem, 7vw, 5.8rem);
-      line-height: 0.95;
-      letter-spacing: -0.06em;
-      margin-bottom: 24px;
+      font-size: clamp(3rem, 6.6vw, 6.7rem);
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+      margin-bottom: 26px;
     }
 
     h2 {
-      font-size: clamp(2rem, 4vw, 3.6rem);
-      line-height: 1;
-      letter-spacing: -0.04em;
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
       margin-bottom: 18px;
     }
 
     h3 {
       margin-bottom: 10px;
+      letter-spacing: -0.025em;
     }
 
     p {
       color: var(--gray);
-      max-width: 620px;
+      max-width: 640px;
+    }
+
+    .hero p {
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 1.05rem;
     }
 
     .hero-actions {
@@ -206,11 +287,28 @@
       margin-top: 32px;
     }
 
+    .hero .btn-primary {
+      background: var(--green-bright);
+      color: var(--dark);
+    }
+
+    .hero .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-media {
+      display: grid;
+      gap: 18px;
+    }
+
     .hero-card {
-      background: var(--white);
-      padding: 16px;
-      border-radius: 28px;
-      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 14px;
+      border-radius: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(10px);
       animation: float 5s ease-in-out infinite;
     }
 
@@ -228,61 +326,77 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border: 2px solid var(--soft-border);
-      border-radius: 22px;
+      border-radius: 24px;
       transition: 0.3s ease;
       cursor: pointer;
     }
 
     .site-image:hover {
-      transform: scale(1.02);
-      box-shadow: var(--shadow);
-      border-color: var(--green);
+      transform: scale(1.018);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.24);
     }
 
     .hero-image {
-      min-height: 520px;
+      min-height: 560px;
       aspect-ratio: 4 / 5;
       object-position: center;
     }
 
-    .feature-image {
-      min-height: 520px;
-      aspect-ratio: 4 / 5;
-      object-position: center;
-    }
-
-    .stats {
+    .mini-proof {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 28px;
+      gap: 12px;
     }
 
-    .stat {
-      background: var(--light-green);
-      padding: 20px;
-      border-radius: 18px;
-      transition: 0.25s ease;
+    .proof-pill {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    .stat:hover {
-      transform: translateY(-5px);
-      background: #cfe3c2;
-    }
-
-    .stat strong {
-      font-size: 2rem;
-      color: var(--green);
+    .proof-pill strong {
       display: block;
+      color: var(--green-bright);
+      font-size: 1.35rem;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .proof-pill span {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.88rem;
     }
 
     .section-header {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 32px;
       align-items: end;
-      margin-bottom: 36px;
+      margin-bottom: 38px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.78rem;
+      margin-bottom: 14px;
+    }
+
+    .section-kicker::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .services-band {
+      position: relative;
     }
 
     .cards {
@@ -292,21 +406,24 @@
     }
 
     .card {
-      background: var(--white);
-      padding: 28px;
-      border-radius: 24px;
-      border: 1px solid var(--soft-border);
+      background: rgba(255, 255, 255, 0.76);
+      padding: 30px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
       transition: 0.3s ease;
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      min-height: 252px;
     }
 
     .card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(79, 125, 63, 0.12), transparent);
+      background:
+        linear-gradient(135deg, rgba(95, 143, 67, 0.13), transparent 55%),
+        radial-gradient(circle at 95% 10%, rgba(216, 168, 77, 0.18), transparent 25%);
       opacity: 0;
       transition: 0.3s ease;
     }
@@ -314,22 +431,33 @@
     .card:hover {
       transform: translateY(-10px);
       box-shadow: var(--shadow);
+      background: var(--white);
     }
 
     .card:hover::before {
       opacity: 1;
     }
 
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
     .card-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      background: var(--light-green);
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      background: var(--green-soft);
       display: grid;
       place-items: center;
       color: var(--green);
       font-weight: 900;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      font-size: 0.96rem;
     }
 
     .card-details {
@@ -337,8 +465,8 @@
       overflow: hidden;
       transition: 0.35s ease;
       color: var(--gray);
-      font-size: 0.95rem;
-      margin-top: 10px;
+      font-size: 0.94rem;
+      margin-top: 12px;
     }
 
     .card.open .card-details {
@@ -347,54 +475,123 @@
 
     .split {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 42px;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 48px;
       align-items: center;
     }
 
+    .feature-frame {
+      position: relative;
+      padding: 14px;
+      background: var(--white);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-frame::before {
+      content: "";
+      position: absolute;
+      left: -16px;
+      top: 40px;
+      width: 86px;
+      height: 86px;
+      border-radius: 28px;
+      background: var(--gold);
+      z-index: -1;
+    }
+
+    .feature-image {
+      min-height: 560px;
+      aspect-ratio: 4 / 5;
+      object-position: center;
+    }
+
     .feature-list {
-      margin-top: 24px;
+      margin-top: 28px;
       display: grid;
       gap: 14px;
     }
 
     .feature {
-      background: var(--white);
-      border: 1px solid var(--soft-border);
-      border-radius: 18px;
-      padding: 18px;
-      font-weight: 700;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px 18px 18px 54px;
+      font-weight: 800;
       transition: 0.25s ease;
+      position: relative;
+    }
+
+    .feature::before {
+      content: "✓";
+      position: absolute;
+      left: 18px;
+      top: 17px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--green);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 0.82rem;
     }
 
     .feature:hover {
-      padding-left: 28px;
-      border-color: var(--green);
-      color: var(--green);
+      transform: translateX(8px);
+      background: var(--white);
+      box-shadow: 0 16px 34px rgba(16, 25, 16, 0.08);
+    }
+
+    .gallery-section {
+      background: var(--dark);
+      color: var(--white);
+      border-radius: 42px;
+      margin: 0 24px 96px;
+      padding: 80px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-section::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      left: -200px;
+      top: -200px;
+      border-radius: 50%;
+      background: rgba(143, 188, 95, 0.22);
+    }
+
+    .gallery-section p {
+      color: rgba(255, 255, 255, 0.68);
     }
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr 0.8fr;
-      grid-auto-rows: 260px;
+      grid-template-columns: 1.1fr 0.75fr 0.75fr;
+      grid-auto-rows: 250px;
       gap: 18px;
+      position: relative;
+      z-index: 1;
     }
 
     .gallery-grid .site-image {
       height: 100%;
       object-fit: cover;
-      min-height: unset;
+      border: 1px solid rgba(255, 255, 255, 0.14);
     }
 
     .gallery-grid .large {
       grid-row: span 2;
-      min-height: unset;
     }
 
     .cta {
-      background: var(--dark);
+      background:
+        linear-gradient(135deg, var(--green), var(--dark-2));
       color: var(--white);
-      border-radius: 34px;
+      border-radius: 38px;
       padding: 64px;
       display: grid;
       grid-template-columns: 1fr auto;
@@ -402,37 +599,38 @@
       align-items: center;
       position: relative;
       overflow: hidden;
+      box-shadow: var(--shadow);
     }
 
     .cta::after {
       content: "";
       position: absolute;
-      width: 300px;
-      height: 300px;
-      right: -100px;
-      top: -100px;
-      background: rgba(79, 125, 63, 0.35);
+      width: 280px;
+      height: 280px;
+      right: -90px;
+      top: -90px;
+      background: rgba(255, 255, 255, 0.12);
       border-radius: 50%;
-      filter: blur(10px);
     }
 
     .cta p {
-      color: #cbd5cb;
+      color: rgba(255, 255, 255, 0.78);
     }
 
     footer {
       padding: 36px 24px;
-      border-top: 1px solid var(--soft-border);
       color: var(--gray);
     }
 
     .footer-inner {
-      max-width: 1200px;
+      max-width: 1240px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       gap: 20px;
       flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      padding-top: 28px;
     }
 
     .reveal {
@@ -449,7 +647,7 @@
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(0, 0, 0, 0.88);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -499,60 +697,46 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
-    @media (max-width: 900px) {
-      body {
-        font-size: 16px;
-      }
-
+    @media (max-width: 980px) {
       section {
-        padding: 64px 18px;
+        padding: 72px 18px;
       }
 
-      .nav {
-        padding: 14px 18px;
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 38px 24px;
+        border-radius: 30px;
       }
 
-      .logo {
-        font-size: 0.95rem;
-        max-width: 210px;
-        line-height: 1.1;
-      }
-
-      .hero,
+      .section-header,
       .split,
       .cta {
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        min-height: auto;
-        padding-top: 52px;
-        gap: 34px;
-      }
-
-      h1 {
-        font-size: clamp(2.65rem, 15vw, 4.25rem);
-      }
-
-      h2 {
-        font-size: clamp(2rem, 10vw, 3rem);
-      }
-
-      p {
-        font-size: 1rem;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .cards,
-      .stats {
+      .cards {
         grid-template-columns: 1fr;
+      }
+
+      .hero-image,
+      .feature-image {
+        min-height: 300px;
+        aspect-ratio: 4 / 3;
+      }
+
+      .hero-card {
+        animation: none;
+      }
+
+      .mini-proof {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-section {
+        margin: 0 18px 72px;
+        border-radius: 30px;
+        padding: 64px 18px;
       }
 
       .gallery-grid {
@@ -560,35 +744,33 @@
         grid-auto-rows: 260px;
       }
 
-      .gallery-grid .large {
+      .gallery-grid .large,
+      .gallery-grid img:nth-child(5) {
         grid-row: auto;
+        grid-column: auto;
       }
 
-      .stats {
-        gap: 12px;
+      .btn {
+        width: 100%;
       }
 
-      .stat {
-        padding: 18px;
+      .hero-actions {
+        flex-direction: column;
       }
 
-      .section-header {
-        display: block;
-        margin-bottom: 28px;
+      .cta {
+        padding: 36px 24px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        padding: 14px 18px;
       }
 
-      .section-header p {
-        margin-top: 12px;
-      }
-
-      .hero-image,
-      .feature-image {
-        min-height: 260px;
-        aspect-ratio: 4 / 3;
-      }
-
-      .hero-card {
-        animation: none;
+      .logo {
+        font-size: 0.95rem;
+        max-width: 230px;
       }
 
       .nav-links {
@@ -597,7 +779,7 @@
         right: 18px;
         top: 64px;
         background: var(--white);
-        border: 1px solid var(--soft-border);
+        border: 1px solid var(--line);
         border-radius: 20px;
         padding: 18px;
         flex-direction: column;
@@ -611,7 +793,6 @@
 
       .nav-links a {
         padding: 10px 0;
-        font-size: 1rem;
       }
 
       .menu-btn {
@@ -622,14 +803,24 @@
         display: none;
       }
 
-      .cta {
-        padding: 34px 24px;
-        border-radius: 26px;
+      h1 {
+        font-size: clamp(3rem, 15vw, 4.2rem);
       }
 
-      .cta::after {
-        width: 180px;
-        height: 180px;
+      h2 {
+        font-size: clamp(2.1rem, 10vw, 3rem);
+      }
+
+      .hero-shell {
+        padding-top: 18px;
+      }
+
+      .hero {
+        padding: 32px 20px;
+      }
+
+      .proof-pill {
+        padding: 16px;
       }
 
       .footer-inner {
@@ -642,32 +833,6 @@
         right: 18px;
       }
     }
-
-    @media (max-width: 480px) {
-      section {
-        padding: 56px 16px;
-      }
-
-      .hero {
-        padding-top: 42px;
-      }
-
-      h1 {
-        font-size: 3rem;
-      }
-
-      .eyebrow {
-        font-size: 0.72rem;
-      }
-
-      .card {
-        padding: 22px;
-      }
-
-      .feature {
-        padding: 16px;
-      }
-    }
   </style>
 </head>
 
@@ -675,7 +840,10 @@
 
   <header>
     <nav class="nav">
-      <a href="#home" class="logo">Cornerstone Electric & Solar</a>
+      <a href="#home" class="logo">
+        <span class="logo-mark">⚡</span>
+        <span>Cornerstone Electric & Solar</span>
+      </a>
 
       <div class="nav-links" id="navLinks">
         <a href="#home">Home</a>
@@ -692,55 +860,62 @@
 
   <main>
 
-    <section id="home" class="container hero">
-      <div class="reveal">
-        <div class="eyebrow">Master Electrician • Licensed & Insured • Missouri & Arkansas</div>
-        <h1>Solar, electrical, and backup power solutions.</h1>
-        <p>
-          Cornerstone Electric & Solar provides licensed residential and commercial electrical service,
-          solar system installation, battery storage, generator backup power, EV chargers, and solar
-          panel removal and reinstallation for roof replacement projects.
-        </p>
+    <section id="home" class="hero-shell">
+      <div class="container hero">
+        <div class="hero-content reveal">
+          <div class="eyebrow">Master Electrician • Missouri & Arkansas</div>
+          <h1>Power built for real life.</h1>
+          <p>
+            Licensed and insured electrical, solar, generator, battery storage, and EV charging
+            solutions for homes, businesses, farms, and commercial properties.
+          </p>
 
-        <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Request a Free Estimate</a>
-          <a href="#services" class="btn btn-secondary">Explore Services</a>
-        </div>
-
-        <div class="stats">
-          <div class="stat">
-            <strong>MO</strong>
-            Licensed service
-          </div>
-          <div class="stat">
-            <strong>AR</strong>
-            Licensed service
-          </div>
-          <div class="stat">
-            <strong>100%</strong>
-            Insured work
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Request a Free Estimate</a>
+            <a href="#services" class="btn btn-secondary">Explore Services</a>
           </div>
         </div>
-      </div>
 
-      <div class="hero-card reveal">
-        <img
-          src="assets/images/image_6.png"
-          alt="Large solar field installation"
-          class="site-image hero-image"
-        />
+        <div class="hero-media reveal">
+          <div class="hero-card">
+            <img
+              src="assets/images/image_6.png"
+              alt="Large solar field installation"
+              class="site-image hero-image"
+            />
+          </div>
+
+          <div class="mini-proof">
+            <div class="proof-pill">
+              <strong>MO</strong>
+              <span>Licensed service</span>
+            </div>
+
+            <div class="proof-pill">
+              <strong>AR</strong>
+              <span>Licensed service</span>
+            </div>
+
+            <div class="proof-pill">
+              <strong>100%</strong>
+              <span>Insured work</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="services">
+    <section id="services" class="services-band">
       <div class="container">
         <div class="section-header reveal">
           <div>
-            <div class="eyebrow">Services</div>
-            <h2>Full-service electrical, solar, and backup power support.</h2>
+            <div class="section-kicker">Services</div>
+            <h2>Electrical expertise with solar energy vision.</h2>
           </div>
+
           <p>
-            Click each service card to expand details.
+            From everyday electrical repairs to complete solar and backup power systems,
+            Cornerstone supports the full energy picture for residential and commercial properties.
           </p>
         </div>
 
@@ -750,7 +925,7 @@
             <h3>Electrical Service & Repairs</h3>
             <p>Residential and commercial electrical service from a licensed master electrician.</p>
             <div class="card-details">
-              Service repairs, electrical troubleshooting, system upgrades, and general electrical work for homes and businesses.
+              Electrical troubleshooting, repairs, upgrades, panels, service work, and system support for homes and businesses.
             </div>
           </article>
 
@@ -766,7 +941,7 @@
           <article class="card reveal">
             <div class="card-icon">🔋</div>
             <h3>Battery Storage & Backup Power</h3>
-            <p>Backup power systems designed to keep essential power available when it matters.</p>
+            <p>Energy backup systems designed to keep essential power available.</p>
             <div class="card-details">
               Battery storage, generator backup power, and practical energy backup solutions for homes and businesses.
             </div>
@@ -783,7 +958,7 @@
 
           <article class="card reveal">
             <div class="card-icon">🏠</div>
-            <h3>Solar Panel Removal & Reinstall</h3>
+            <h3>Solar Removal & Reinstall</h3>
             <p>Solar panel removal and reinstallation for roof replacement projects.</p>
             <div class="card-details">
               Panels can be safely removed before a new roof is installed and reinstalled once roofing work is complete.
@@ -804,7 +979,7 @@
 
     <section id="why-us">
       <div class="container split">
-        <div class="reveal">
+        <div class="feature-frame reveal">
           <img
             src="assets/images/image_3.png"
             alt="Battery storage and backup power system"
@@ -813,11 +988,12 @@
         </div>
 
         <div class="reveal">
-          <div class="eyebrow">Why Choose Us</div>
-          <h2>Licensed, insured, and built for dependable power.</h2>
+          <div class="section-kicker">Why Choose Us</div>
+          <h2>Dependable power starts with skilled electrical work.</h2>
           <p>
-            Cornerstone Electric & Solar brings master electrician experience to solar, electrical,
-            generator, battery backup, and EV charging projects across Missouri and Arkansas.
+            Solar and backup power are only as strong as the electrical foundation behind them.
+            Cornerstone brings master electrician experience to every installation, repair,
+            upgrade, and energy system.
           </p>
 
           <div class="feature-list">
@@ -831,15 +1007,17 @@
       </div>
     </section>
 
-    <section id="projects">
+    <section id="projects" class="gallery-section">
       <div class="container">
         <div class="section-header reveal">
           <div>
-            <div class="eyebrow">Project Gallery</div>
-            <h2>Solar, electrical, and backup power project highlights.</h2>
+            <div class="section-kicker">Project Gallery</div>
+            <h2>Clean installs. Practical systems. Reliable power.</h2>
           </div>
+
           <p>
-            Click a project photo to enlarge it.
+            A look at solar, battery storage, generator backup, EV charging, and electrical work.
+            Click any image to enlarge it.
           </p>
         </div>
 
@@ -869,8 +1047,8 @@
           />
 
           <img
-            src="assets/images/image_5.png"
-            alt="Commercial rooftop solar installation"
+            src="assets/images/image_2.png"
+            alt="Generator backup power system"
             class="site-image"
           />
         </div>
