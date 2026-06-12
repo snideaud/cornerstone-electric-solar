@@ -1017,30 +1017,7 @@
     /* ─── COUNTER ANIMATION ─── */
     .counter { display: inline; }
 
-    /* Hidden by default; shown only on mobile via media query */
-    .mobile-cta-bar { display: none; }
-    .nav-close-btn {
-      display: none;
-      position: absolute;
-      top: 20px; right: 20px;
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.07);
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-body);
-      z-index: 10;
-    }
-
-    /* ══════════════════════════════════════════
-       RESPONSIVE — tablet first, then mobile
-    ══════════════════════════════════════════ */
-
-    /* ── 1100px: hero goes single-column ── */
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 1100px) {
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-visual { min-height: 340px; }
@@ -1049,7 +1026,6 @@
       .difference-points { grid-template-columns: 1fr; }
     }
 
-    /* ── 980px: tablet ── */
     @media (max-width: 980px) {
       section { padding: 64px 18px; }
       #home { padding: 18px 18px 0; }
@@ -1061,6 +1037,9 @@
       h1 { font-size: clamp(2.8rem, 12vw, 4.4rem); }
       h2 { font-size: clamp(2rem, 8vw, 3rem); }
 
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+
       .section-header,
       .split,
       .cta,
@@ -1070,8 +1049,21 @@
       .owner-highlights { padding: 40px 32px; }
       .owner-copy { padding: 40px 32px; }
 
+      .cards { grid-template-columns: 1fr; gap: 14px; }
+
       .split { gap: 36px; }
       .feature-image { aspect-ratio: 4/3; }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        gap: 12px;
+      }
+
+      .gallery-grid .large { grid-row: auto; }
+
+      .gallery-item { aspect-ratio: 4/3; }
+      .gallery-item:hover .site-image { transform: none; }
 
       .cta { padding: 40px 28px; border-radius: 28px; }
       .cta-phone { flex-direction: row; }
@@ -1079,335 +1071,49 @@
       .testimonial-slide { padding: 28px 28px 24px; }
       .stars { padding: 24px 28px 0; }
       .testimonial-controls { padding: 14px 28px 22px; }
-
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: 200px;
-        gap: 12px;
-      }
-      .gallery-grid .large { grid-row: auto; grid-column: span 2; }
     }
 
-    /* ══════════════════════════════════════════
-       MOBILE — 760px and below
-       Strategy:
-         • Full-screen nav drawer (overlay)
-         • Hero: hide circuit panel, compact content + 2×2 stat grid
-         • Cards: horizontal swipe carousel (no stacking)
-         • Gallery: 2-col grid, no lightbox tap confusion
-         • Sections: tighter padding, smaller type scale
-         • Sticky "Call Now" bar pinned to bottom
-         • Feature split: image hidden on mobile (text-only)
-         • Warranty/About/Difference: readable single-col cards
-         • Footer: centered, minimal
-    ══════════════════════════════════════════ */
     @media (max-width: 760px) {
-
-      /* ── Body padding for sticky bottom bar ── */
-      body { padding-bottom: 72px; }
-
-      /* ── Sticky bottom CTA bar ── */
-      .mobile-cta-bar {
-        display: flex !important;
-        position: fixed;
-        bottom: 0; left: 0; right: 0;
-        z-index: 200;
-        background: var(--dark);
-        border-top: 1px solid rgba(255,255,255,0.08);
-        padding: 10px 16px 10px;
-        gap: 10px;
-        align-items: center;
-        justify-content: space-between;
-        backdrop-filter: blur(12px);
-      }
-
-      .mobile-cta-bar .mcta-label {
-        color: rgba(255,255,255,0.6);
-        font-size: 0.78rem;
-        font-weight: 500;
-        line-height: 1.3;
-      }
-
-      .mobile-cta-bar .mcta-label strong {
-        display: block;
-        color: var(--white);
-        font-size: 0.9rem;
-      }
-
-      .mobile-cta-bar .mcta-btn {
-        background: var(--green-bright);
-        color: var(--dark);
-        border: none;
-        border-radius: 999px;
-        padding: 11px 22px;
-        font-weight: 800;
-        font-family: var(--font-body);
-        font-size: 0.9rem;
-        white-space: nowrap;
-        cursor: pointer;
-        flex-shrink: 0;
-      }
-
-      /* ── Nav ── */
       .nav { padding: 12px 16px; }
-      .logo { font-size: 0.92rem; }
-
-      .nav-cta { display: none; }
-      .menu-btn {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        padding: 9px 14px;
-        font-size: 0.84rem;
-      }
-
-      /* Full-screen drawer replaces dropdown */
+      .logo { font-size: 0.95rem; max-width: 200px; }
       .nav-links {
-        position: fixed;
-        inset: 0;
-        background: var(--dark);
-        flex-direction: column;
-        gap: 0;
-        display: flex;
-        transform: translateX(100%);
-        transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
-        padding: 80px 28px 32px;
-        z-index: 150;
-        overflow-y: auto;
-      }
-
-      .nav-links.open { transform: translateX(0); }
-
-      .nav-links a {
-        color: var(--white);
-        font-size: 1.6rem;
-        font-family: var(--font-display);
-        font-weight: 700;
-        padding: 14px 0;
-        border-bottom: 1px solid rgba(255,255,255,0.07);
-        letter-spacing: -0.02em;
-      }
-
-      .nav-links a:last-child { border-bottom: none; }
-      .nav-links a::after { display: none; }
-
-      .nav-links a:hover,
-      .nav-links a.active { color: var(--green-bright); }
-
-      /* Nav drawer close button */
-      .nav-close-btn {
-        display: flex !important;
-      }
-
-      /* ── Sections: tighter padding ── */
-      section { padding: 48px 16px; }
-      #home { padding: 12px 12px 0; }
-      .dark-section {
-        margin: 0 12px 48px;
-        padding: 48px 16px;
-        border-radius: 22px;
-      }
-      .cta-wrapper { padding-bottom: 48px; }
-
-      /* ── Type scale ── */
-      h1 { font-size: 2.6rem; line-height: 1.0; }
-      h2 { font-size: 1.9rem; line-height: 1.08; }
-      h3 { font-size: 1.1rem; }
-
-      /* ── Hero ── */
-      .hero {
-        grid-template-columns: 1fr;
-        border-radius: 22px;
-        min-height: auto;
-      }
-
-      /* Hide the circuit SVG panel entirely on mobile */
-      .hero-visual { display: none; }
-
-      .hero-content { padding: 36px 22px 40px; }
-      .hero p { font-size: 0.97rem; line-height: 1.65; }
-
-      /* Hero actions: stacked full-width buttons */
-      .hero-actions {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 24px;
-      }
-
-      .btn { width: 100%; justify-content: center; min-height: 50px; }
-
-      /* Inline stat strip replaces floating pills */
-      .hero-stats {
-        position: static;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0;
-        margin-top: 28px;
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.1);
-      }
-
-      .stat-pill {
-        border-radius: 0;
-        border: none;
-        border-right: 1px solid rgba(255,255,255,0.08);
-        padding: 14px 10px;
-        text-align: center;
-        backdrop-filter: none;
-      }
-
-      .stat-pill:last-child { border-right: none; }
-
-      .stat-pill strong {
-        font-size: 1.05rem;
-        margin-bottom: 3px;
-      }
-
-      .stat-pill span { font-size: 0.65rem; }
-
-      /* ── Section header: stacked ── */
-      .section-header {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        margin-bottom: 28px;
-      }
-
-      /* ── Cards → horizontal swipe carousel ── */
-      .cards {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 14px;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 12px;
-        /* hide scrollbar */
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-      }
-
-      .cards::-webkit-scrollbar { display: none; }
-
-      .card {
-        flex: 0 0 78vw;
-        max-width: 300px;
-        scroll-snap-align: start;
-        padding: 24px;
-        border-radius: 20px;
-        /* disable desktop hover lift on touch */
-        transform: none !important;
-      }
-
-      .card:hover { transform: none !important; box-shadow: none; }
-
-      /* Carousel scroll hint fade on right edge */
-      .cards-wrap {
-        position: relative;
-      }
-
-      .cards-wrap::after {
-        content: "";
         position: absolute;
-        top: 0; right: 0; bottom: 12px;
-        width: 48px;
-        background: linear-gradient(to right, transparent, var(--cream) 85%);
-        pointer-events: none;
-        border-radius: 0 20px 20px 0;
-      }
-
-      .dark-section .cards-wrap::after {
-        background: linear-gradient(to right, transparent, var(--dark-2) 85%);
-      }
-
-      /* ── About section ── */
-      .owner-strip { border-radius: 22px; }
-      .owner-copy { padding: 30px 22px; }
-      .owner-highlights { padding: 28px 22px; }
-
-      /* ── Difference ── */
-      .difference-layout { grid-template-columns: 1fr; gap: 16px; }
-      .difference-main { padding: 32px 22px; border-radius: 22px; }
-      .difference-points { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .difference-point { padding: 18px 16px; border-radius: 16px; }
-      .difference-point strong { font-size: 0.95rem; }
-      .difference-point p { font-size: 0.86rem; }
-
-      /* ── Features split: hide image, text only ── */
-      .split { grid-template-columns: 1fr; gap: 0; }
-      .feature-frame { display: none; }
-      .feature { padding: 13px 14px 13px 46px; font-size: 0.9rem; border-radius: 14px; }
-      .feature:hover { transform: none; }
-
-      /* ── Warranty ── */
-      .warranty-band { grid-template-columns: 1fr; gap: 14px; }
-      .warranty-card { padding: 28px 20px; border-radius: 20px; }
-
-      /* ── Testimonials ── */
-      .testimonial-slider { border-radius: 20px; }
-      .stars { padding: 20px 22px 0; font-size: 0.8rem; }
-      .testimonial-slide { padding: 20px 22px 18px; }
-      .testimonial-quote {
-        font-size: 1.05rem;
-        padding-left: 16px;
-      }
-      .testimonial-quote::before { font-size: 3rem; top: -8px; }
-      .testimonial-controls { padding: 12px 22px 18px; }
-
-      /* ── Gallery → 2-col grid, no lightbox on mobile ── */
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: 140px;
-        gap: 10px;
-      }
-
-      .gallery-grid .large { grid-row: auto; grid-column: auto; }
-      .gallery-item { aspect-ratio: auto; border-radius: 14px; }
-      .gallery-item .site-image { border-radius: 14px; }
-      .gallery-item:hover .site-image { transform: none; }
-      .gallery-item::after { display: none; }
-
-      /* ── CTA ── */
-      .cta {
-        grid-template-columns: 1fr;
-        padding: 32px 20px;
-        border-radius: 22px;
-        gap: 24px;
-      }
-
-      .cta-phone { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .cta .btn { width: 100%; justify-content: center; }
-
-      /* ── Footer ── */
-      footer { padding: 24px 16px 28px; }
-      .footer-inner {
+        left: 12px; right: 12px; top: 54px;
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 12px;
         flex-direction: column;
-        gap: 6px;
-        text-align: center;
-        font-size: 0.82rem;
+        gap: 2px;
+        display: none;
+        box-shadow: var(--shadow);
+        font-size: 0.9rem;
       }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 10px; }
+      .nav-cta { display: none; }
+      .menu-btn { display: block; }
 
-      /* ── Lightbox: disable on touch ── */
-      .lightbox { display: none !important; }
+      .hero-stats { grid-template-columns: 1fr 1fr; gap: 8px; bottom: 16px; right: 16px; left: 16px; }
+
+      .difference-main { padding: 36px 28px; }
+      .difference-point { padding: 22px; }
+
+      .warranty-card { padding: 32px 24px; border-radius: 24px; }
+
+      .testimonial-quote { font-size: 1.05rem; }
+
+      .footer-inner { flex-direction: column; gap: 10px; }
     }
 
-    /* ── Very small phones ── */
-    @media (max-width: 380px) {
-      h1 { font-size: 2.2rem; }
-      h2 { font-size: 1.7rem; }
-      .card { flex: 0 0 88vw; }
-      .hero-stats { grid-template-columns: repeat(2, 1fr); }
-      .stat-pill:nth-child(2) { border-right: none; }
-      .stat-pill:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.08); }
-      .stat-pill:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.08); }
-      .difference-points { grid-template-columns: 1fr; }
+    @media (max-width: 420px) {
+      .hero-content { padding: 32px 18px; }
+      h1 { font-size: 2.8rem; }
+      .cta { padding: 32px 18px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -1419,7 +1125,6 @@
       <a href="#home" class="logo">Cornerstone <span>Electric & Solar</span></a>
 
       <div class="nav-links" id="navLinks">
-        <button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">×</button>
         <a href="#home">Home</a>
         <a href="#services">Services</a>
         <a href="#about">About</a>
@@ -1639,8 +1344,10 @@
           </p>
         </div>
 
-        <div class="cards-wrap">
         <div class="cards">
+          <article class="card reveal">
+            <div class="card-icon">⚡</div>
+            <h3>Residential Electrical</h3>
             <p>Safe, reliable electrical service for homeowners and new construction projects.</p>
             <div class="card-details">
               Service upgrades, panel replacements, remodels, additions, lighting systems,
@@ -1737,8 +1444,7 @@
             </div>
             <div class="card-toggle">Learn more <span class="arrow">›</span></div>
           </article>
-        </div><!-- /.cards -->
-        </div><!-- /.cards-wrap -->
+        </div>
       </div>
     </section>
 
@@ -1854,7 +1560,6 @@
           </p>
         </div>
 
-        <div class="cards-wrap">
         <div class="cards">
           <article class="card reveal">
             <div class="card-icon">☀️</div>
@@ -1921,8 +1626,7 @@
             </div>
             <div class="card-toggle">Learn more <span class="arrow">›</span></div>
           </article>
-        </div><!-- /.cards -->
-        </div><!-- /.cards-wrap -->
+        </div>
       </div>
     </section>
 
@@ -2104,50 +1808,27 @@
   </div>
 
   <script>
-    const isMobile = () => window.innerWidth <= 760;
-
-    // ─── NAV DRAWER ───
+    // ─── MENU TOGGLE ───
     const menuBtn = document.getElementById("menuBtn");
     const navLinks = document.getElementById("navLinks");
-    const navCloseBtn = document.getElementById("navCloseBtn");
-
-    function openNav() {
-      navLinks.classList.add("open");
-      if (isMobile()) document.body.style.overflow = "hidden";
-      menuBtn.setAttribute("aria-expanded", "true");
-    }
-
-    function closeNav() {
-      navLinks.classList.remove("open");
-      document.body.style.overflow = "";
-      menuBtn.setAttribute("aria-expanded", "false");
-    }
-
-    menuBtn.addEventListener("click", () => navLinks.classList.contains("open") ? closeNav() : openNav());
-    navCloseBtn.addEventListener("click", closeNav);
-    document.querySelectorAll(".nav-links a").forEach(l => l.addEventListener("click", closeNav));
-
-    // Tap outside drawer to close
-    document.addEventListener("pointerdown", e => {
-      if (navLinks.classList.contains("open") && !navLinks.contains(e.target) && e.target !== menuBtn) {
-        closeNav();
-      }
+    menuBtn.addEventListener("click", () => navLinks.classList.toggle("open"));
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
     });
 
     // ─── SCROLL REVEAL ───
     const revealObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
+      entries.forEach((e, i) => {
         if (e.isIntersecting) {
-          // On mobile, cards are a carousel — reveal them all immediately, no stagger
-          const inCarousel = e.target.closest('.cards');
-          const delay = (!isMobile() && inCarousel)
-            ? Array.from(inCarousel.children).indexOf(e.target) * 80
+          // Stagger sibling cards
+          const delay = e.target.closest('.cards') 
+            ? Array.from(e.target.closest('.cards').children).indexOf(e.target) * 80 
             : 0;
           setTimeout(() => e.target.classList.add("visible"), delay);
           revealObs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.08 });
+    }, { threshold: 0.12 });
 
     document.querySelectorAll(".reveal").forEach(el => revealObs.observe(el));
 
@@ -2156,38 +1837,46 @@
     const navItems = document.querySelectorAll(".nav-links a");
     window.addEventListener("scroll", () => {
       let current = "";
-      sections.forEach(s => { if (scrollY >= s.offsetTop - 130) current = s.id; });
-      navItems.forEach(l => l.classList.toggle("active", l.getAttribute("href") === "#" + current));
+      sections.forEach(section => {
+        if (scrollY >= section.offsetTop - 130) current = section.id;
+      });
+      navItems.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+      });
     }, { passive: true });
 
-    // ─── CARDS EXPAND (desktop only — mobile swipes) ───
+    // ─── CARDS EXPAND ───
     document.querySelectorAll(".card").forEach(card => {
-      card.addEventListener("click", () => {
-        if (!isMobile()) card.classList.toggle("open");
-        else card.classList.toggle("open"); // still allow expand on mobile tap
-      });
+      card.addEventListener("click", () => card.classList.toggle("open"));
     });
 
     // ─── COUNTER ANIMATION ───
     function animateCounter(el) {
       const target = parseInt(el.dataset.target);
+      const duration = 1600;
       const start = performance.now();
-      const dur = 1600;
-      const tick = now => {
-        const p = Math.min((now - start) / dur, 1);
-        el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * target);
-        if (p < 1) requestAnimationFrame(tick);
-      };
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
+      }
       requestAnimationFrame(tick);
     }
 
     const counterObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); } });
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCounter(e.target);
+          counterObs.unobserve(e.target);
+        }
+      });
     }, { threshold: 0.5 });
 
     document.querySelectorAll(".counter").forEach(el => counterObs.observe(el));
 
-    // ─── TESTIMONIALS + TOUCH SWIPE ───
+    // ─── TESTIMONIALS ───
     const track = document.getElementById("testimonialTrack");
     const slides = document.querySelectorAll(".testimonial-slide");
     const dotsContainer = document.getElementById("testimonialDots");
@@ -2215,26 +1904,15 @@
     document.getElementById("testimonialNext").addEventListener("click", () => { next(); reset(); });
     document.getElementById("testimonialPrev").addEventListener("click", () => { prev(); reset(); });
 
-    // Touch swipe on testimonial slider
-    let tsX = null;
-    track.addEventListener("touchstart", e => { tsX = e.touches[0].clientX; }, { passive: true });
-    track.addEventListener("touchend", e => {
-      if (tsX === null) return;
-      const dx = e.changedTouches[0].clientX - tsX;
-      if (Math.abs(dx) > 44) { dx < 0 ? next() : prev(); reset(); }
-      tsX = null;
-    }, { passive: true });
-
     update();
     reset();
 
-    // ─── LIGHTBOX (desktop only) ───
+    // ─── LIGHTBOX ───
     const lightbox = document.getElementById("lightbox");
     const lbImg = document.getElementById("lightboxImage");
 
     document.querySelectorAll(".gallery-item img").forEach(img => {
       img.addEventListener("click", () => {
-        if (isMobile()) return; // no lightbox on mobile
         lbImg.src = img.src;
         lbImg.alt = img.alt;
         lightbox.classList.add("open");
@@ -2251,15 +1929,6 @@
     lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLb(); });
     document.addEventListener("keydown", e => { if (e.key === "Escape") closeLb(); });
   </script>
-
-  <!-- ─── MOBILE STICKY CTA BAR ─── -->
-  <div class="mobile-cta-bar" aria-label="Call to action">
-    <div class="mcta-label">
-      <strong>Free Estimate</strong>
-      Missouri & Arkansas
-    </div>
-    <a href="tel:0000000000" class="mcta-btn">Call Now →</a>
-  </div>
 
 </body>
 </html>
