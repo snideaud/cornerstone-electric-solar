@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#071A33" />
-  <img src="/assets/logos/logo.jpeg" alt="">
+  <meta name="theme-color" content="#2F6FB7" />
+  <title>Cornerstone Electric &amp; Solar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1050,6 +1050,23 @@
     }
 
     /* ── 980px: tablet ── */
+
+    /* High-contrast labels on blue section backgrounds */
+    .dark-section .section-kicker,
+    .difference-main .section-kicker,
+    .owner-highlights .section-kicker,
+    .warranty-card.highlight .eyebrow {
+      color: #FFFFFF;
+      text-shadow: 0 1px 2px rgba(20, 61, 104, 0.24);
+    }
+
+    .dark-section .section-kicker::before,
+    .difference-main .section-kicker::before,
+    .owner-highlights .section-kicker::before {
+      background: #FFD45C;
+      box-shadow: 0 0 0 1px rgba(255, 212, 92, 0.08);
+    }
+
     @media (max-width: 980px) {
       section { padding: 64px 18px; }
       #home { padding: 18px 18px 0; }
@@ -1470,6 +1487,221 @@
         transition-duration: 0.01ms !important;
       }
     }
+
+    /* ══════════════════════════════════════════
+       LIGHTER CORNERSTONE BRAND THEME
+    ══════════════════════════════════════════ */
+    :root {
+      --cream: #FBFDFF;
+      --cream-2: #F1F6FC;
+      --white: #FFFFFF;
+      --dark: #214F82;
+      --dark-2: #2F6FB7;
+      --blue: #1760AE;
+      --blue-bright: #5A96D8;
+      --blue-glow: rgba(90, 150, 216, 0.28);
+      --blue-soft: #E7F1FC;
+      --gold: #E9B62F;
+      --gold-glow: rgba(233, 182, 47, 0.18);
+      --amber: #F5CC63;
+      --gray: #5D7085;
+      --line: rgba(33, 79, 130, 0.10);
+      --line-light: rgba(255, 255, 255, 0.22);
+      --shadow: 0 24px 64px rgba(33, 79, 130, 0.12);
+      --shadow-blue: 0 16px 40px rgba(23, 96, 174, 0.18);
+    }
+
+    body {
+      background: var(--cream);
+    }
+
+    body::before {
+      background:
+        radial-gradient(ellipse at 8% 12%, rgba(90, 150, 216, 0.10), transparent 36%),
+        radial-gradient(ellipse at 94% 18%, rgba(233, 182, 47, 0.08), transparent 28%),
+        radial-gradient(ellipse at 50% 85%, rgba(23, 96, 174, 0.05), transparent 40%);
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.94);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      width: clamp(190px, 20vw, 285px);
+      min-width: 0;
+    }
+
+    .logo img {
+      display: block;
+      width: 100%;
+      height: 64px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .nav {
+      min-height: 82px;
+    }
+
+    .nav-cta,
+    .menu-btn {
+      background: var(--blue);
+    }
+
+    .nav-cta:hover,
+    .btn-dark:hover {
+      background: #2F78C3;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #173C67;
+    }
+
+    .btn-primary:hover {
+      background: #F2C54D;
+      box-shadow: 0 18px 38px rgba(233, 182, 47, 0.28);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #4A88CA 0%, #3477BC 52%, #2868AD 100%);
+    }
+
+    .hero::before {
+      background:
+        radial-gradient(ellipse at 18% 48%, rgba(255, 255, 255, 0.13), transparent 52%),
+        radial-gradient(ellipse at 82% 8%, rgba(245, 204, 99, 0.20), transparent 38%),
+        radial-gradient(ellipse at 90% 90%, rgba(184, 218, 250, 0.20), transparent 36%);
+    }
+
+    .hero p {
+      color: rgba(255, 255, 255, 0.84);
+    }
+
+    h1 em,
+    .hero .eyebrow,
+    .stat-pill strong {
+      color: #F7D36E;
+    }
+
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.24);
+    }
+
+    .stat-pill span {
+      color: rgba(255, 255, 255, 0.80);
+    }
+
+    .owner-highlights {
+      background: linear-gradient(145deg, #4B8ACB, #3476B9);
+    }
+
+    .difference-main {
+      background: linear-gradient(145deg, #4B8ACB 0%, #3476B9 100%);
+    }
+
+    .difference-main::after,
+    .owner-highlights::before {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .difference-main p,
+    .owner-highlight p {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .dark-section {
+      background: linear-gradient(145deg, #4382C3, #2F70B4);
+    }
+
+    .dark-section::before {
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    .dark-section::after {
+      background: rgba(245, 204, 99, 0.13);
+    }
+
+    .dark-section p,
+    .dark-section .card p,
+    .dark-section .card-details {
+      color: rgba(255, 255, 255, 0.80);
+    }
+
+    .dark-section .card {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.20);
+    }
+
+    .dark-section .card:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.30);
+    }
+
+    .warranty-card.highlight {
+      background: linear-gradient(145deg, #4B8ACB, #3476B9);
+    }
+
+    .cta {
+      background: linear-gradient(140deg, #4B8ACB 0%, #3476B9 68%, #2C68A8 100%);
+    }
+
+    .mobile-cta-bar {
+      background: rgba(39, 101, 167, 0.97);
+    }
+
+    @media (max-width: 980px) {
+      .logo {
+        width: clamp(180px, 29vw, 245px);
+      }
+
+      .logo img {
+        height: 56px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        min-height: 68px;
+      }
+
+      .logo {
+        width: min(58vw, 210px);
+        max-width: none;
+      }
+
+      .logo img {
+        height: 44px;
+      }
+
+      .nav-links {
+        background: rgba(39, 101, 167, 0.98);
+      }
+
+      body.nav-open::before {
+        background: rgba(25, 67, 111, 0.38);
+      }
+
+      .mobile-cta-bar .mcta-btn {
+        background: var(--gold);
+        color: #173C67;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .logo {
+        width: 175px;
+      }
+
+      .logo img {
+        height: 40px;
+      }
+    }
+
   </style>
 </head>
 
@@ -1477,7 +1709,9 @@
 
   <header>
     <nav class="nav">
-      <a href="#home" class="logo">Cornerstone <span>Electric & Solar</span></a>
+      <a href="#home" class="logo" aria-label="Cornerstone Electric and Solar home">
+        <img src="assets/logos/logo.jpeg" alt="Cornerstone Electric &amp; Solar">
+      </a>
 
       <div class="nav-links" id="navLinks">
         <button class="nav-close-btn" id="navCloseBtn" aria-label="Close menu">×</button>
@@ -1701,7 +1935,10 @@
         </div>
 
         <div class="cards-wrap">
-        <div class="cards">
+          <div class="cards">
+          <article class="card reveal">
+            <div class="card-icon">🏡</div>
+            <h3>Residential Electrical</h3>
             <p>Safe, reliable electrical service for homeowners and new construction projects.</p>
             <div class="card-details">
               Service upgrades, panel replacements, remodels, additions, lighting systems,
@@ -1714,17 +1951,6 @@
           <article class="card reveal">
             <div class="card-icon">🏢</div>
             <h3>Commercial Electrical</h3>
-            <p>Electrical contracting for businesses, facilities, shops, warehouses, and public buildings.</p>
-            <div class="card-details">
-              Commercial service work, electrical upgrades, lighting, three-phase power,
-              backup systems, solar integration, battery storage, and infrastructure support.
-            </div>
-            <div class="card-toggle">Learn more <span class="arrow">›</span></div>
-          </article>
-
-          article class="card reveal">
-            <div class="card-icon">🏢</div>
-            <h3>Residential Electrical</h3>
             <p>Electrical contracting for businesses, facilities, shops, warehouses, and public buildings.</p>
             <div class="card-details">
               Commercial service work, electrical upgrades, lighting, three-phase power,
