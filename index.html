@@ -1702,12 +1702,136 @@
       }
     }
 
+
+    /* ══════════════════════════════════════════
+       TOP CONTACT BAR
+    ══════════════════════════════════════════ */
+    .contact-bar {
+      background: linear-gradient(90deg, #245F9E, #3478BC);
+      color: var(--white);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .contact-bar-inner {
+      width: min(1260px, calc(100% - 56px));
+      min-height: 38px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.015em;
+    }
+
+    .contact-bar-group {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .contact-bar-label {
+      color: rgba(255, 255, 255, 0.72);
+      font-weight: 600;
+    }
+
+    .contact-bar a {
+      color: var(--white);
+      font-weight: 800;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .contact-bar a:hover,
+    .contact-bar a:focus-visible {
+      color: #FFD45C;
+    }
+
+    .contact-divider {
+      color: #FFD45C;
+      font-weight: 900;
+    }
+
+    .hero-eyebrow {
+      flex-wrap: wrap;
+      font-weight: 900;
+    }
+
+    .hero-eyebrow strong {
+      color: inherit;
+      font: inherit;
+      font-weight: 900;
+    }
+
+    @media (max-width: 980px) {
+      .contact-bar-inner {
+        width: min(100% - 36px, 1260px);
+      }
+
+      .contact-bar-secondary span:last-child {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .contact-bar-inner {
+        width: 100%;
+        min-height: 36px;
+        padding: 7px 16px;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.72rem;
+      }
+
+      .contact-bar-primary {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .contact-bar-label,
+      .contact-bar-secondary {
+        display: none;
+      }
+
+      .hero-eyebrow {
+        gap: 7px;
+        line-height: 1.55;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .contact-bar-inner {
+        font-size: 0.68rem;
+        padding-inline: 10px;
+      }
+    }
+
   </style>
 </head>
 
 <body>
 
   <header>
+    <div class="contact-bar" aria-label="Cornerstone contact information">
+      <div class="contact-bar-inner">
+        <div class="contact-bar-group contact-bar-primary">
+          <span class="contact-bar-label">Call Cornerstone:</span>
+          <a href="tel:4172991235" aria-label="Call Cornerstone at 417-299-1235">417-299-1235</a>
+          <span class="contact-divider" aria-hidden="true">•</span>
+          <a href="tel:4172992167" aria-label="Call Cornerstone at 417-299-2167">417-299-2167</a>
+        </div>
+
+        <div class="contact-bar-group contact-bar-secondary">
+          <a href="mailto:cornerstoneelectric417@outlook.com">
+            cornerstoneelectric417@outlook.com
+          </a>
+          <span class="contact-divider" aria-hidden="true">•</span>
+          <span>Serving Missouri &amp; Arkansas</span>
+        </div>
+      </div>
+    </div>
+
     <nav class="nav">
       <a href="#home" class="logo" aria-label="Cornerstone Electric and Solar home">
         <img src="assets/logos/logo.jpeg" alt="Cornerstone Electric &amp; Solar">
@@ -1737,7 +1861,13 @@
       <div class="container hero">
 
         <div class="hero-content reveal">
-          <div class="eyebrow">Electrical Contracting · Solar Energy · Backup Power</div>
+          <div class="eyebrow hero-eyebrow">
+            <strong>Electrical Contracting</strong>
+            <span aria-hidden="true">·</span>
+            <strong>Solar Energy</strong>
+            <span aria-hidden="true">·</span>
+            <strong>Backup Power</strong>
+          </div>
           <h1>Reliable power,<br><em>built to last.</em></h1>
           <p>
             Cornerstone Electric & Solar provides electrical contracting, solar energy,
@@ -2382,7 +2512,7 @@
 
           <div class="cta-phone">
             <a href="tel:4172991235" class="btn btn-primary" style="font-size:1.05rem; padding: 18px 32px;">
-              Call Now →
+              Call 417-299-1235 →
             </a>
             <span style="color: rgba(255,255,255,0.5); font-size:0.85rem;">No obligation, free estimate</span>
           </div>
