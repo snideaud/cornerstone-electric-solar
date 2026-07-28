@@ -74,6 +74,7 @@
 
     .nav {
       max-width: 1260px;
+      min-height:100px;
       margin: 0 auto;
       padding: 14px 28px;
       display: flex;
@@ -82,18 +83,20 @@
       gap: 18px;
     }
 
-    .logo {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 1.1rem;
-      color: var(--dark);
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-    }
+   .logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    width: 320px;
+}
 
-    .logo span {
-      color: var(--blue);
-    }
+.logo img{
+    width:100%;
+    height:90px;
+    object-fit:contain;
+    object-position:left center;
+    display:block;
+}
 
     .nav-links {
       display: flex;
@@ -1103,6 +1106,19 @@
         gap: 12px;
       }
       .gallery-grid .large { grid-row: auto; grid-column: span 2; }
+
+      .logo{
+          width:260px;
+      }
+
+      .logo img{
+          height:72px;
+      }
+
+      .nav{
+          min-height:86px;
+      }
+
     }
 
     /* ══════════════════════════════════════════
@@ -1467,6 +1483,18 @@
 
       /* ── Lightbox: disable on touch ── */
       .lightbox { display: none !important; }
+
+      .logo{
+          width:200px;
+      }
+
+      .logo img{
+          height:52px;
+      }
+
+      .nav{
+          min-height:72px;
+      }
     }
 
     /* ── Very small phones ── */
